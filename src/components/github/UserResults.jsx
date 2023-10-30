@@ -27,7 +27,7 @@ const UserResults = () => {
 
   if (!isLoading) {
     return (
-      <div className='grid gap-8 mx-2 px-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+      <div className='grid gap-8 mx-2 px-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 place-items-center'>
         {users.map(({ id, login }) => (
           <h3 key={id}>{login}</h3>
         ))}
