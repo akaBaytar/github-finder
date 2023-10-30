@@ -1,4 +1,4 @@
-import UserResults from '../components/github/UserResults';
+import UserResults from '../components/user/UserResults';
 
 const Home = () => {
   return (
