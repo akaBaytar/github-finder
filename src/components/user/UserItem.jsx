@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const UserItem = ({ user: { login, avatar_url } }) => {
   return (
-    <Link className='card shadow-md compact bg-base-200' to={`/users/${login}`}>
+    <Link className='card shadow-md compact bg-base-200' to={`/user/${login}`}>
       <div className='flex-row items-center gap-4 card-body'>
         <div className='avatar'>
           <div className='rounded-full ring-2 w-12 h-12'>
