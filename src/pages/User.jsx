@@ -3,12 +3,14 @@ import { Link, useParams } from 'react-router-dom';
 
 import Spinner from '../components/layout/Spinner';
 import RepoList from '../components/repos/RepoList';
+
 import GithubContext from '../context/github/GithubContext';
+import { getUser, getRepos } from '../context/github/GithubActions';
 
 import { BsPeople, BsPerson, BsBraces, BsShopWindow } from 'react-icons/bs';
 
 const User = () => {
-  const { getUser, user, getRepos, repos, isLoading } = useContext(GithubContext);
+  const { user, repos, isLoading, dispatch } = useContext(GithubContext);
 
   const {
     name,
@@ -30,9 +32,18 @@ const User = () => {
   const params = useParams();
 
   useEffect(() => {
-    getUser(params.login);
-    getRepos(params.login);
-  }, []);
+    dispatch({ type: 'SET_LOADING' });
+
+    const getUserData = async () => {
+      const userData = await getUser(params.login);
+      dispatch({ type: 'GET_USER', payload: userData });
+
+      const reposData = await getRepos(params.login);
+      dispatch({ type: 'GET_REPOS', payload: reposData });
+    };
+
+    getUserData();
+  }, [dispatch, params.login]);
 
   if (isLoading) {
     return <Spinner />;
@@ -145,7 +156,7 @@ const User = () => {
           <p className='stat-value pr-5 text-3xl'>{public_gists}</p>
         </div>
       </div>
-      <RepoList repos={repos}/>
+      <RepoList repos={repos} />
     </div>
   );
 };
