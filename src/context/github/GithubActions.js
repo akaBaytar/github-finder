@@ -1,5 +1,4 @@
 const URL = 'https://api.github.com';
-const TOKEN = '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';
 
 // get search results
 export const searchUsers = async (text) => {
@@ -7,27 +6,15 @@ export const searchUsers = async (text) => {
     q: text,
   });
 
-  const response = await fetch(`${URL}/search/users?${params}`, {
-    headers: {
-      Authorization: `token ${TOKEN}`,
-    },
-  });
-
+  const response = await fetch(`${URL}/search/users?${params}`);
   const { items } = await response.json();
-
   return items;
 };
 
 // get single user
 export const getUser = async (login) => {
-  const response = await fetch(`${URL}/users/${login}`, {
-    headers: {
-      Authorization: `token ${TOKEN}`,
-    },
-  });
-
+  const response = await fetch(`${URL}/users/${login}`);
   const data = await response.json();
-
   return data;
 };
 
@@ -38,13 +25,7 @@ export const getRepos = async (login) => {
     per_page: 10,
   });
 
-  const response = await fetch(`${URL}/users/${login}/repos?${params}`, {
-    headers: {
-      Authorization: `token ${TOKEN}`,
-    },
-  });
-
+  const response = await fetch(`${URL}/users/${login}/repos?${params}`);
   const data = await response.json();
-
   return data;
 };
