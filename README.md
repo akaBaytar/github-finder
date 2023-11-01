@@ -19,7 +19,8 @@ The application utilizes the GitHub API for fetching data.
 - GitHub API: *Utilized for fetching user profiles and repository data.*
 
 #### Deployment
-- Once the project is completed, the live version will be deployed using Vercel. 
+- Once the project is completed, the live version will be deployed using Vercel.
+- https://burakbilgili-github-api.vercel.app/
 - Feel free to explore and contribute to the project!
 
 #### How to Run the Project
