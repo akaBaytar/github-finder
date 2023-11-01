@@ -1,14 +1,14 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useContext } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import Spinner from '../components/layout/Spinner';
+import RepoList from '../components/repos/RepoList';
 import GithubContext from '../context/github/GithubContext';
 
 import { BsPeople, BsPerson, BsBraces, BsShopWindow } from 'react-icons/bs';
 
 const User = () => {
-  const { getUser, user, isLoading } = useContext(GithubContext);
+  const { getUser, user, getRepos, repos, isLoading } = useContext(GithubContext);
 
   const {
     name,
@@ -31,6 +31,7 @@ const User = () => {
 
   useEffect(() => {
     getUser(params.login);
+    getRepos(params.login);
   }, []);
 
   if (isLoading) {
@@ -144,6 +145,7 @@ const User = () => {
           <p className='stat-value pr-5 text-3xl'>{public_gists}</p>
         </div>
       </div>
+      <RepoList repos={repos}/>
     </div>
   );
 };
